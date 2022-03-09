@@ -1,0 +1,51 @@
+#include <linkbot.h>
+#include <math.h>
+
+CLinkbotI e, r;
+
+
+double circle(double y) {
+    return(-(y*y) + 20*y);
+}
+double ellipse(double y) {
+    return (-(9*(y*y))/25 + (36*y)/5); //remember to sqrt
+}
+
+/*by doing math I got the circle formula simplified to this: x^{2}=6.25-y^{2}+5y-6.25
+I think it's usuable, I can sqrt the return value
+except I need y-values not x-values
+ahhh
+easy fix y^{2}=6.25-x^{2}+5y-6.25, other fix: y^{2}=-x^{2}+5y wait nvm 
+guess I'm adjusting y-values
+I hate circles
+now I love math and circles and ellipses
+oh and also desmos, desmos is good*/
+
+
+int main() {
+    const double radius = 1.75, radius1 = 2, trackWidth = 3.69;
+    double x1, y, x2;
+    
+    e.initPosition(0, 0, 90);
+    r.initPosition(20, 0, 90);
+    
+
+    for (y = 0; y <= 20; y += 2) {
+        if (y == 0) {
+            r.setSpeed(4, radius);
+        }
+        else if (y == 16) {
+            r.setSpeed(3, radius);
+        }
+        else if (y == 20) {
+            r.setSpeed(5, radius);
+        }
+        x1 = -sqrt(circle(y));
+        x2 = sqrt(ellipse(y));
+        r.drivexyToNB(x1+20, y, radius, trackWidth);
+        printf("(%0.2lf, %0.2lf)", x1, y);
+        e.drivexyTo(x2, y, radius1, trackWidth);
+        r.drivexyWait();
+    } 
+    return 0;
+}
