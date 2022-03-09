@@ -1,5 +1,3 @@
-# Exploring Computer Science
+# Linkbot Code - Synchronized Check-In
 
-This branch includes the source code all of the notable projects of the course. 
-
-This would include the Linkbot code, the complicated ProjectSTEM program, and the Choose-Your-Own-Adventure story program.
+This repo includes the source code for the Linkbot challenge Synchronized Check-In, from the Div C 2019 RoboPlay Competetion.
